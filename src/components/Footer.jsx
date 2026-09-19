@@ -1,3 +1,5 @@
+import { IMG_BASE } from '../utils/helpers.js';
+
 export default function Footer({ name, resume }) {
   const currentYear = new Date().getFullYear();
   return (
@@ -25,7 +27,7 @@ export default function Footer({ name, resume }) {
           <a href="#contact">Contact</a>
           {resume && (
             <a
-              href={`/images/${resume}`}
+              href={`${IMG_BASE}${resume}`}
               download={`${(name || 'Resume').replace(/\s+/g, '_')}_Resume.pdf`}
               className="footer-resume-link"
               target="_blank"

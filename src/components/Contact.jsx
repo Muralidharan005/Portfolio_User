@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { api } from '../api.js';
-import { useData, openExternalUrl } from '../utils/helpers.js';
+import { useData, openExternalUrl, IMG_BASE } from '../utils/helpers.js';
 import { Loading, Err } from './Common.jsx';
 
 export default function Contact() {
@@ -179,7 +179,7 @@ export default function Contact() {
               <div className="contact-resume-container">
                 {me.resume ? (
                   <a
-                    href={`/images/${me.resume}`}
+                    href={`${IMG_BASE}${me.resume}`}
                     download={`${ownerName.replace(/\s+/g, '_')}_Resume.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"

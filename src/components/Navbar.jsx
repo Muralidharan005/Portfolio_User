@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { IMG_BASE } from '../utils/helpers.js';
 
 export default function Navbar({ name, resume }) {
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +67,7 @@ export default function Navbar({ name, resume }) {
           <li>
             {resume ? (
               <a
-                href={`/images/${resume}`}
+                href={`${IMG_BASE}${resume}`}
                 download={`${(name || 'Resume').replace(/\s+/g, '_')}_Resume.pdf`}
                 className="nav-resume-btn"
                 target="_blank"
@@ -116,7 +117,7 @@ export default function Navbar({ name, resume }) {
           })}
           {resume ? (
             <a
-              href={`/images/${resume}`}
+              href={`${IMG_BASE}${resume}`}
               download={`${(name || 'Resume').replace(/\s+/g, '_')}_Resume.pdf`}
               className="nav-mobile-resume-btn"
               onClick={() => setOpen(false)}

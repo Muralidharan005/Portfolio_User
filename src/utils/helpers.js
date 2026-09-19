@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 
-export const IMG_BASE = '/images/';
+export const BASE = import.meta.env.VITE_API_URL || '';
+export const IMG_BASE = `${BASE}/images/`;
+
+export function getImageUrl(path) {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  const clean = path.replace(/^\/?images\//, '');
+  return `${IMG_BASE}${clean}`;
+}
 
 export function openExternalUrl(rawUrl) {
   if (!rawUrl || typeof rawUrl !== 'string') return;

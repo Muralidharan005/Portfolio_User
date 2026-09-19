@@ -69,7 +69,7 @@ export default function Home({ about }) {
               </a>
               {me.resume && (
                 <a
-                  href={`/images/${me.resume}`}
+                  href={`${IMG_BASE}${me.resume}`}
                   download={`${(me.name || 'Resume').replace(/\s+/g, '_')}_Resume.pdf`}
                   className="btn btn-hero-resume"
                   target="_blank"

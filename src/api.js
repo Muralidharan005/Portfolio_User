@@ -1,4 +1,11 @@
-const BASE = '';
+export const BASE = import.meta.env.VITE_API_URL || '';
+
+export function getImageUrl(path) {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  const clean = path.replace(/^\/?images\//, '');
+  return `${BASE}/images/${clean}`;
+}
 
 async function get(url) {
   const res = await fetch(BASE + url);
