@@ -1,0 +1,484 @@
+/* ================================================================
+   COMPONENT STYLESHEET IMPORTS
+   ================================================================ */
+@import './Navbar.css';
+@import './Home.css';
+@import './About.css';
+@import './Skill.css';
+@import './Projects.css';
+@import './Experience.css';
+@import './Contact.css';
+@import './Footer.css';
+
+/* ================================================================
+   GLOBAL / CORE FOUNDATION STYLES
+   ================================================================ */
+
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10001;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), #10b981);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+  transition: width 0.1s ease-out;
+}
+
+/* Global Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  font-family: inherit;
+  user-select: none;
+  box-sizing: border-box;
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+.btn:active {
+  transform: translateY(-1px) scale(0.985);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background-size: 180% 180%;
+  color: #ffffff;
+  box-shadow: 0 4px 22px var(--accent-glow);
+  animation: buttonGradient 5s ease infinite;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 30px var(--accent-glow);
+  color: #ffffff;
+}
+.btn-outline {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+.btn-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover .btn-icon-img,
+.btn-outline:hover .btn-icon-img {
+  transform: scale(1.18) rotate(-6deg);
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  outline: none;
+  position: relative;
+  z-index: 10;
+  will-change: transform;
+}
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+.btn-action:active {
+  transform: translateY(0) scale(0.97);
+}
+.btn-action .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.btn-action .btn-arrow {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.btn-action:hover .btn-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.btn-github {
+  background: #141720;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f0f0ff;
+}
+.btn-github:hover {
+  background: #202432;
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.btn-linkedin {
+  background: rgba(10, 102, 194, 0.14);
+  border-color: rgba(10, 102, 194, 0.4);
+  color: #6bb6ff;
+}
+.btn-linkedin:hover {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  color: #ffffff;
+  box-shadow: 0 0 22px rgba(10, 102, 194, 0.45);
+}
+
+.btn-live {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.38);
+  color: var(--accent2-light);
+}
+.btn-live:hover {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 22px var(--accent2-glow);
+}
+
+/* Global Sections */
+.section {
+  padding: 110px 0;
+  position: relative;
+  overflow: clip;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 58px;
+  position: relative;
+}
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent2-light);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+}
+.section-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent2),
+    transparent
+  );
+  margin: 18px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent2-glow);
+  animation: linePulse 3s ease-in-out infinite;
+}
+@keyframes linePulse {
+  0%,
+  100% {
+    width: 80px;
+    opacity: 0.75;
+  }
+  50% {
+    width: 125px;
+    opacity: 1;
+  }
+}
+
+/* Global Card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.5s ease,
+    background 0.35s ease;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(99, 102, 241, 0.08),
+    transparent 50%
+  );
+  pointer-events: none;
+  transition: var(--transition);
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.055) 48%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+.card:hover::after {
+  transform: translateX(100%);
+}
+.card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+.card:hover::before {
+  opacity: 1;
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(99, 102, 241, 0.16),
+    transparent 60%
+  );
+}
+
+/* Global Loading & Error */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  gap: 14px;
+  color: var(--text-muted);
+}
+.loader {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: loaderSpin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.error-msg {
+  text-align: center;
+  padding: 44px;
+  color: var(--text-muted);
+}
+
+/* ================================================================
+   ADVANCED MOTION LAYER & ACCESSIBILITY
+   ================================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  isolation: isolate;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 42vw;
+  height: 42vw;
+  max-width: 620px;
+  max-height: 620px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(90px);
+  opacity: 0.11;
+  animation: ambientDrift 18s ease-in-out infinite alternate;
+}
+body::before {
+  top: 8vh;
+  left: -18vw;
+  background: var(--accent);
+}
+body::after {
+  right: -18vw;
+  bottom: 6vh;
+  background: var(--accent2);
+  animation-delay: -7s;
+}
+
+@keyframes ambientDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  50% {
+    transform: translate3d(5vw, -3vh, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-3vw, 4vh, 0) scale(0.96);
+  }
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes buttonGradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.reveal,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal {
+  transform: translateY(34px);
+}
+.reveal-left {
+  transform: translateX(-44px);
+}
+.reveal-right {
+  transform: translateX(44px);
+}
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent2-light);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    width: 70vw;
+    height: 70vw;
+    opacity: 0.07;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  .reveal-left {
+    transform: translateY(28px);
+  }
+  .reveal-right {
+    transform: translateY(28px);
+  }
+  .reveal-left.is-visible,
+  .reveal-right.is-visible,
+  .reveal-left.visible,
+  .reveal-right.visible {
+    transform: none;
+  }
+}
