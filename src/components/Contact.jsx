@@ -91,8 +91,18 @@ export default function Contact() {
         },
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to send message");
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || (result && (result.success === "false" || result.success === false))) {
+        if (result && result.message && result.message.includes("Activation")) {
+          setStatus({
+            state: "error",
+            message:
+              "Form is waiting for one-time activation. Please open the latest email from FormSubmit in your inbox and click 'Activate Form'.",
+          });
+          return;
+        }
+        throw new Error((result && result.message) || "Failed to send message");
       }
 
       setStatus({
@@ -105,6 +115,7 @@ export default function Contact() {
       setStatus({
         state: "error",
         message:
+          err.message ||
           "Could not send message. Please check your connection or try again.",
       });
     }
