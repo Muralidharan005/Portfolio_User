@@ -17,8 +17,8 @@ export default function About({ about }) {
             <div className="about-avatar-box">
               <div className="about-avatar">
                 {me.img
-                  ? <img src={IMG_BASE + me.img} alt={me.name} onError={e => e.target.style.display = 'none'} />
-                  : <span>👤</span>}
+                  ? <img src={IMG_BASE + me.img} alt={me.name} onError={e => { e.target.onerror = null; e.target.src = '/Md.png'; }} />
+                  : <img src="/Md.png" alt={me.name} />}
               </div>
             </div>
             <div className="about-name">{me.name}</div>

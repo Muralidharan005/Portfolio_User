@@ -92,8 +92,8 @@ export default function Home({ about }) {
               <div className="hero-avatar-ring" />
               <div className="hero-avatar">
                 {me.img
-                  ? <img src={IMG_BASE + me.img} alt={me.name} onError={e => e.target.style.display = 'none'} />
-                  : <span style={{ fontSize: '4.5rem' }}>👤</span>}
+                  ? <img src={IMG_BASE + me.img} alt={me.name} onError={e => { e.target.onerror = null; e.target.src = '/Md.png'; }} />
+                  : <img src="/Md.png" alt={me.name} />}
               </div>
             </div>
           </div>

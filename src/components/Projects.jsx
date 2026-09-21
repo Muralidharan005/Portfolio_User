@@ -36,10 +36,12 @@ function parseProjectDetails(proName) {
   return { title, techStack };
 }
 
+import { initialProjects } from '../data/initialData.js';
+
 export default function Projects() {
-  const { data, loading, error } = useData(api.getProjects);
-  if (loading) return <section className="section" id="projects"><div className="container"><Loading /></div></section>;
-  if (error) return <section className="section" id="projects"><div className="container"><Err msg={error} /></div></section>;
+  const { data, loading, error } = useData(api.getProjects, 'projects', initialProjects);
+  if (loading && !data) return <section className="section" id="projects"><div className="container"><Loading /></div></section>;
+  if (error && !data) return <section className="section" id="projects"><div className="container"><Err msg={error} /></div></section>;
   
   const allItems = data || [];
   const projectsList = allItems.filter(p => p.proName && p.proName.trim() !== '');

@@ -34,13 +34,15 @@ function getCertificateLogo(title, issuer) {
   return '/icons/cert-badge.png';
 }
 
+import { initialEducation, initialInternships } from '../data/initialData.js';
+
 export default function Experience() {
-  const edu = useData(api.getEducation);
-  const intern = useData(api.getInternships);
-  const loading = edu.loading || intern.loading;
-  const error = edu.error || intern.error;
+  const edu = useData(api.getEducation, 'education', initialEducation);
+  const intern = useData(api.getInternships, 'internships', initialInternships);
+  const loading = (edu.loading && !edu.data) || (intern.loading && !intern.data);
+  const error = (edu.error && !edu.data) || (intern.error && !intern.data);
   if (loading) return <section className="section" id="experience"><div className="container"><Loading /></div></section>;
-  if (error) return <section className="section" id="experience"><div className="container"><Err msg={error} /></div></section>;
+  if (error) return <section className="section" id="experience"><div className="container"><Err msg={edu.error || intern.error} /></div></section>;
   const educations = edu.data || [];
   const rawInternships = intern.data || [];
 

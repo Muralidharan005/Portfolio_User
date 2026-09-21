@@ -2,11 +2,12 @@ import { api } from '../api.js';
 import { useData, IMG_BASE } from '../utils/helpers.js';
 import { Loading, Err } from './Common.jsx';
 import { CATEGORY_DEFAULT_ICONS, getSkillLogo, parseSkillItems } from '../utils/skillIcons.js';
+import { initialSkills } from '../data/initialData.js';
 
 export default function Skill() {
-  const { data, loading, error } = useData(api.getSkills);
-  if (loading) return <section className="section" id="skills"><div className="container"><Loading /></div></section>;
-  if (error) return <section className="section" id="skills"><div className="container"><Err msg={error} /></div></section>;
+  const { data, loading, error } = useData(api.getSkills, 'skills', initialSkills);
+  if (loading && !data) return <section className="section" id="skills"><div className="container"><Loading /></div></section>;
+  if (error && !data) return <section className="section" id="skills"><div className="container"><Err msg={error} /></div></section>;
   
   const rawSkills = data || [];
   const skills = [...rawSkills].sort((a, b) => (a.id || 0) - (b.id || 0));

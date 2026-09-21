@@ -12,12 +12,14 @@ import Experience from './components/Experience.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 
+import { initialAbout } from './data/initialData.js';
+
 export default function App() {
-  const { data: aboutData, loading, error } = useData(api.getAbout);
+  const { data: aboutData, loading, error } = useData(api.getAbout, 'about', initialAbout);
   const name = aboutData?.[0]?.name;
   const resume = aboutData?.[0]?.resume;
 
-  if (loading) {
+  if (loading && !aboutData) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Loading />

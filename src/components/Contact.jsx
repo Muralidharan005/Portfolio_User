@@ -3,8 +3,10 @@ import { api } from "../api.js";
 import { useData, openExternalUrl, IMG_BASE } from "../utils/helpers.js";
 import { Loading, Err } from "./Common.jsx";
 
+import { initialAbout } from "../data/initialData.js";
+
 export default function Contact() {
-  const { data, loading, error } = useData(api.getAbout);
+  const { data, loading, error } = useData(api.getAbout, 'about', initialAbout);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,7 +15,7 @@ export default function Contact() {
   });
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  if (loading)
+  if (loading && !data)
     return (
       <section className="section" id="contact">
         <div className="container">
@@ -21,7 +23,7 @@ export default function Contact() {
         </div>
       </section>
     );
-  if (error)
+  if (error && !data)
     return (
       <section className="section" id="contact">
         <div className="container">
